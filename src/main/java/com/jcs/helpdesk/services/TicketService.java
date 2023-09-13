@@ -12,6 +12,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,6 +39,13 @@ public class TicketService {
         return repository.save(newTicket(objDTO));
     }
 
+    public Ticket update(Integer id, @Valid TicketDTO objDto) {
+        objDto.setId(id);
+        Ticket oldObj = findById(id);
+        oldObj = newTicket(objDto);
+        return repository.save(oldObj);
+    }
+
     private Ticket newTicket(TicketDTO obj) {
         Tecnico tecnico = tecnicoService.findById(obj.getTecnico());
         Cliente cliente = clienteService.findById(obj.getCliente());
@@ -46,6 +54,10 @@ public class TicketService {
         if(obj.getId() != null) {
             ticket.setId(obj.getId());
         }
+        if(obj.getStatus().equals(2)) {
+            ticket.setDataFechamento(LocalDate.now());
+        }
+        
         ticket.setTecnico(tecnico);
         ticket.setCliente(cliente);
         ticket.setPrioridade(Prioridade.toEnum(obj.getPrioridade()));
@@ -54,4 +66,5 @@ public class TicketService {
         ticket.setObservacoes(obj.getObservacoes());
         return ticket;
     }
+
 }

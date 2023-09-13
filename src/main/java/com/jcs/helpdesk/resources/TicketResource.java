@@ -33,9 +33,16 @@ public class TicketResource {
         return ResponseEntity.ok().body(listDTO);
     }
 
+    @PostMapping
     public ResponseEntity<TicketDTO> create(@Valid @RequestBody TicketDTO objDTO) {
         Ticket obj = service.create(objDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<TicketDTO> update (@PathVariable Integer id, @Valid @RequestBody TicketDTO objDto) {
+        Ticket newObj = service.update(id, objDto);
+        return ResponseEntity.ok().body(new TicketDTO(newObj));
     }
 }
