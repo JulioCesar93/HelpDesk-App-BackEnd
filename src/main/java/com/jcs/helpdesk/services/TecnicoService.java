@@ -47,6 +47,15 @@ public class TecnicoService {
         return repository.save(oldObj);
     }
 
+    public void delete(Integer id) {
+        Tecnico obj = findById(id);
+        if (obj.getTickets().size() > 0) {
+            throw new DataIntegrityViolationException("Técnico possui tickets atrelados e não poderá ser apagado");
+        } else {
+            repository.deleteById(id);
+        }
+    }
+
     private void validaPorCpfEEmail(TecnicoDTO objDTO) {
         Optional<Pessoa> obj = pessoaRepository.findByCpf(objDTO.getCpf());
         if (obj.isPresent() && obj.get().getId() != objDTO.getId()) {
