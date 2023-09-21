@@ -1,0 +1,29 @@
+package com.jcs.helpdesk.services;
+
+import com.jcs.helpdesk.domain.Pessoa;
+import com.jcs.helpdesk.repositories.PessoaRepository;
+import com.jcs.helpdesk.security.UserSpringSecurity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService {
+
+    @Autowired
+    private PessoaRepository repository;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<Pessoa> user = repository.findByEmail(email);
+        if(user.isPresent()) {
+            return new UserSpringSecurity(user.get().getId(), user.get().getEmail(), user.get().getSenha(), user.get().getPerfis());
+        }
+        throw new UsernameNotFoundException(email);
+    }
+
+}

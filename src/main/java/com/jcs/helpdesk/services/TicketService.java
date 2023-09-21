@@ -57,7 +57,7 @@ public class TicketService {
         if(obj.getStatus().equals(2)) {
             ticket.setDataFechamento(LocalDate.now());
         }
-        
+
         ticket.setTecnico(tecnico);
         ticket.setCliente(cliente);
         ticket.setPrioridade(Prioridade.toEnum(obj.getPrioridade()));
@@ -66,5 +66,4 @@ public class TicketService {
         ticket.setObservacoes(obj.getObservacoes());
         return ticket;
     }
-
 }

@@ -10,6 +10,7 @@ import com.jcs.helpdesk.repositories.ClienteRepository;
 import com.jcs.helpdesk.repositories.TecnicoRepository;
 import com.jcs.helpdesk.repositories.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -23,12 +24,14 @@ public class DBService {
     private ClienteRepository clienteRepository;
     @Autowired
     private TicketRepository ticketRepository;
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     public void instanciaDB() {
-        Tecnico tec1 = new Tecnico(null, "Lemes Gustavo", "52584633035", "Lemesgus@mail.com", "alg78");
+        Tecnico tec1 = new Tecnico(null, "Lemes Gustavo", "52584633035", "Lemesgus@mail.com", encoder.encode("123"));
         tec1.addPerfil(Perfil.ADMIN);
 
-        Cliente cli1 = new Cliente(null, "Amanda Fernandes", "45082546082", "amandafer261102@mail.com", "banco01");
+        Cliente cli1 = new Cliente(null, "Amanda Fernandes", "45082546082", "amandafer261102@mail.com", encoder.encode("123"));
 
         Ticket sr1 = new Ticket(null, Prioridade.MEDIA, Status.ANDAMENTO, "SR-01", "Primeiro Ticket", tec1, cli1);
 
