@@ -8,10 +8,10 @@ import com.jcs.helpdesk.domain.enums.Prioridade;
 import com.jcs.helpdesk.domain.enums.Status;
 import com.jcs.helpdesk.repositories.TicketRepository;
 import com.jcs.helpdesk.services.exceptions.ObjectnotFoundException;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;

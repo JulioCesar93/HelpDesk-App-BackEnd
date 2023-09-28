@@ -6,12 +6,12 @@ import com.jcs.helpdesk.domain.dtos.ClienteDTO;
 import com.jcs.helpdesk.repositories.ClienteRepository;
 import com.jcs.helpdesk.repositories.PessoaRepository;
 import com.jcs.helpdesk.services.exceptions.ObjectnotFoundException;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 

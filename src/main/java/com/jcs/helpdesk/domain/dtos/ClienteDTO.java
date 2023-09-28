@@ -3,8 +3,8 @@ package com.jcs.helpdesk.domain.dtos;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jcs.helpdesk.domain.Cliente;
 import com.jcs.helpdesk.domain.enums.Perfil;
-import jakarta.validation.constraints.NotNull;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
