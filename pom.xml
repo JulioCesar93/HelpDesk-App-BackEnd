@@ -65,7 +65,6 @@
 		</dependency>
 
 		<!-- ___ Security ___ -->
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -83,6 +82,21 @@
 			<artifactId>annotations</artifactId>
 			<version>13.0</version>
 			<scope>compile</scope>
+		</dependency>
+
+		<!-- Deploy -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.10.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<version>3.1.1</version>
+			<scope>test</scope>
 		</dependency>
 
 		<!--<dependency>
